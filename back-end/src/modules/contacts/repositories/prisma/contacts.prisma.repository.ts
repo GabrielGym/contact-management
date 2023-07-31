@@ -10,18 +10,20 @@ import { UpdateContactDto } from '../../dto/update-contact.dto';
 @Injectable()
 export class ContactsPrismaRepository implements ContactsRepository {
   constructor(private prisma: PrismaService) {}
-  async create(data: CreateContactDto): Promise<Contact> {
+  async create(data: CreateContactDto, userId: string): Promise<Contact> {
     const contact = new Contact();
     Object.assign(contact, {
       ...data,
     });
     const newContact = await this.prisma.contact.create({
-      data: { ...contact },
+      data: { ...contact, userId },
     });
     return plainToInstance(Contact, newContact);
   }
-  async findAll(): Promise<Contact[]> {
-    const contacts = await this.prisma.contact.findMany();
+  async findAll(userId: string): Promise<Contact[]> {
+    const contacts = await this.prisma.contact.findMany({
+      where: { userId },
+    });
     return plainToInstance(Contact, contacts);
   }
   async findOne(id: string): Promise<Contact> {

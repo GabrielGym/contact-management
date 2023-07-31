@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
-  UseGuards,
+  // UseGuards,
+  Request,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+// import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('contacts')
 export class ContactsController {
@@ -19,14 +21,15 @@ export class ContactsController {
 
   @Post()
   // @UseGuards(JwtAuthGuard)
-  create(@Body() createContactDto: CreateContactDto) {
-    return this.contactsService.create(createContactDto);
+  @ApiBearerAuth()
+  create(@Body() createContactDto: CreateContactDto, @Request() req) {
+    return this.contactsService.create(createContactDto, req.user.id);
   }
 
   @Get()
   // @UseGuards(JwtAuthGuard)
-  findAll() {
-    return this.contactsService.findAll();
+  findAll(@Request() req) {
+    return this.contactsService.findAll(req.user.id);
   }
 
   @Get(':id')

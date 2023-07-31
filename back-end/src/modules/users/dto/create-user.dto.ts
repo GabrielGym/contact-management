@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { hashSync } from 'bcryptjs';
 import { Transform } from 'class-transformer';
 import {
@@ -10,22 +11,27 @@ import {
 } from 'class-validator';
 
 export class CreateUserDto {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   name: string;
 
+  @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
+  @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
   number: number;
 
+  @ApiProperty()
   @IsString()
   @IsOptional()
   img_perfil: string | null;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @MinLength(6)

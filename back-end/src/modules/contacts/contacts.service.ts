@@ -6,23 +6,23 @@ import { ContactsRepository } from './repositories/contacts.repository';
 @Injectable()
 export class ContactsService {
   constructor(private contactsRepository: ContactsRepository) {}
-  create(createContactDto: CreateContactDto) {
-    return this.contactsRepository.create(createContactDto);
+  async create(createContactDto: CreateContactDto, userId: string) {
+    return await this.contactsRepository.create(createContactDto, userId);
   }
 
-  findAll() {
-    return this.contactsRepository.findAll();
+  async findAll(userId: string) {
+    return await this.contactsRepository.findAll(userId);
   }
 
-  findOne(id: string) {
-    return this.contactsRepository.findOne(id);
+  async findOne(id: string) {
+    return await this.contactsRepository.findOne(id);
   }
 
-  update(id: string, updateContactDto: UpdateContactDto) {
-    return this.contactsRepository.update(id, updateContactDto);
+  async update(id: string, updateContactDto: UpdateContactDto) {
+    return await this.contactsRepository.update(id, updateContactDto);
   }
 
-  remove(id: string) {
-    return this.contactsRepository.delete(id);
+  async remove(id: string) {
+    return await this.contactsRepository.delete(id);
   }
 }
