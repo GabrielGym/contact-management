@@ -18,6 +18,7 @@ export class ContactsPrismaRepository implements ContactsRepository {
     const newContact = await this.prisma.contact.create({
       data: { ...contact, userId },
     });
+    console.log(newContact)
     return plainToInstance(Contact, newContact);
   }
   async findAll(userId: string): Promise<Contact[]> {

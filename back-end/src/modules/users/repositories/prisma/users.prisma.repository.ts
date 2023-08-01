@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersRepository } from '../users.repository';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDto } from '../../dto/create-user.dto';
@@ -28,6 +28,9 @@ export class UsersPrismaRepository implements UsersRepository {
     const user = await this.prisma.user.findUnique({
       where: { id },
     });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
     return plainToInstance(User, user);
   }
 
