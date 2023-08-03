@@ -6,7 +6,7 @@ export class User {
   readonly id: string;
   name: string;
   email: string;
-  number: number;
+  number: string;
   img_perfil?: string | null;
 
   @Exclude()

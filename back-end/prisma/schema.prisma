@@ -15,7 +15,7 @@ model User {
   name       String
   email      String    @unique
   password   String
-  number     Int
+  number     String
   img_perfil String?
   contact    Contact[]
 
@@ -27,7 +27,7 @@ model Contact {
   name       String
   email      String?
   infos      String?
-  number     Int
+  number     String
   img_perfil String?
   user       User    @relation(fields: [userId], references: [id])
   userId     String

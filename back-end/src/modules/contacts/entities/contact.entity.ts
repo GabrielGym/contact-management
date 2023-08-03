@@ -5,7 +5,7 @@ export class Contact {
   name: string;
   email?: string | null;
   infos?: string | null;
-  number: number;
+  number: string;
   img_perfil?: string | null;
   userId: string;
 

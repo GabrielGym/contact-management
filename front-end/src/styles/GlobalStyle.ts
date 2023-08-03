@@ -11,11 +11,14 @@ export default createGlobalStyle`
     --color-gray-700: #616161;
     --color-gray-600: #757575;
     --color-gray-500: #9e9e9e;
+    --color-gray-400: #bdbdbd;
     --color-gray-300: #e0e0e0;
     --color-gray-100: #f5f5f5;
 
     font-size: 60%;   
   }
+
+  
 
   /* font-size: 16px;
   1rem = 10px
@@ -40,11 +43,22 @@ export default createGlobalStyle`
   }
 
   body {
-    background: var(--color-gray-900);
+    background: var(--color-black);
     color: var(--color-gray-300);
     -webkit-font-smoothing: antialiased;
+    margin:0;
+    padding: 1rem;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
 
     overflow-x: hidden;
+  }
+
+  body>div {
+    margin:0;
+    padding: 0;
   }
 
   body, input, button, textarea {
