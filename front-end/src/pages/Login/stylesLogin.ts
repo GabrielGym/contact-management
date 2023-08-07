@@ -9,7 +9,7 @@ export const LoginStyles = styled.main`
   border-radius: 8px;
   border: 2px solid var(--color-gray-900);
   padding: 3rem 2rem;
-  margin: 0 auto;
+  margin: 6rem auto;
   gap: 1.5rem;
   font-weight: 500;
   color: var(--color-white);
@@ -65,4 +65,5 @@ export const LoginStyles = styled.main`
     align-items: center;
     justify-content: center;
   }
+
 `;

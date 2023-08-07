@@ -20,13 +20,10 @@ export class UsersPrismaRepository implements UsersRepository {
     });
     return plainToInstance(User, newUser);
   }
-  async findAll(): Promise<User[]> {
-    const users = await this.prisma.user.findMany();
-    return plainToInstance(User, users);
-  }
-  async findOne(id: string): Promise<User> {
+
+  async findOne(userId: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
-      where: { id },
+      where: { id: userId },
     });
     if (!user) {
       throw new NotFoundException('user not found');
@@ -42,16 +39,16 @@ export class UsersPrismaRepository implements UsersRepository {
     return user;
   }
   
-  async update(id: string, data: UpdateUserDto): Promise<User> {
+  async update(userId: string, data: UpdateUserDto): Promise<User> {
     const user = await this.prisma.user.update({
-      where: { id },
+      where: { id: userId },
       data: { ...data },
     });
     return plainToInstance(User, user);
   }
-  async delete(id: string): Promise<void> {
+  async delete(userId: string): Promise<void> {
     await this.prisma.user.delete({
-      where: { id },
+      where: { id : userId },
     });
   }
 }

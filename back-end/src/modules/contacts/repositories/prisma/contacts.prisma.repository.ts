@@ -15,6 +15,7 @@ export class ContactsPrismaRepository implements ContactsRepository {
     Object.assign(contact, {
       ...data,
     });
+    
     const newContact = await this.prisma.contact.create({
       data: { ...contact, userId },
     });
@@ -32,6 +33,7 @@ export class ContactsPrismaRepository implements ContactsRepository {
     });
     return plainToInstance(Contact, contact);
   }
+
   async update(id: string, data: UpdateContactDto): Promise<Contact> {
     const contact = await this.prisma.contact.update({
       where: { id },

@@ -1,10 +1,10 @@
 import { ReactNode, createContext, useEffect } from "react";
-import { LoginData, LoginResponse } from "../pages/Login/validator";
-import { api } from "../services/api";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { api } from "../services/api";
+import { LoginData, LoginResponse } from "../pages/Login/validator";
+import { CadastroData } from "../pages/Cadastro/validator";
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { CadastroData } from "../pages/Cadastro/validator";
 
 interface AuthProviderProps {
     children: ReactNode
@@ -28,7 +28,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             return
         }
         api.defaults.headers.common.Authorization = `Bearer ${token}`
-    }, [])
+        navigate("/dashboard")
+    }, [navigate])
 
     const signIn = async (data: LoginData) => {
         try {
@@ -36,9 +37,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const { token } = response.data
 
             api.defaults.headers.common.Authorization = `Bearer ${token}`
+
             localStorage.setItem("your-todolist:token", token)
-
-
             toast.success("Usuário cadastrado com sucesso!")
             setTimeout(() => navigate("dashboard"), 3200)
 

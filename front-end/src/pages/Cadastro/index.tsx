@@ -3,13 +3,6 @@ import { useAuth } from "../../hooks/useAuth";
 import { CadastroStyles } from "./stylesCadastro";
 import { CadastroData } from "./validator";
 
-// interface FormData {
-//     email: string;
-//     password: string;
-//     name: string;
-//     number: string;
-// }
-
 export const Cadastro: React.FC = () => {
     const { newRegister, navigate } = useAuth();
     const [formData, setFormData] = useState<CadastroData>({

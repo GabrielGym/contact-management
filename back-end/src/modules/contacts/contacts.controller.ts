@@ -10,8 +10,6 @@ import {
   Request,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
-import { CreateContactDto } from './dto/create-contact.dto';
-import { UpdateContactDto } from './dto/update-contact.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
 
@@ -22,7 +20,15 @@ export class ContactsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  create(@Body() createContactDto: CreateContactDto, @Request() req) {
+  create(@Body() createContactDto, @Request() req) {
+    for (const key in createContactDto) {
+      if (
+        createContactDto.hasOwnProperty(key) &&
+        createContactDto[key] === ''
+      ) {
+        createContactDto[key] = null;
+      }
+    }
     return this.contactsService.create(createContactDto, req.user.id);
   }
 
@@ -39,7 +45,15 @@ export class ContactsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateContactDto: UpdateContactDto) {
+  update(@Param('id') id: string, @Body() updateContactDto) {
+    for (const key in updateContactDto) {
+      if (
+        updateContactDto.hasOwnProperty(key) &&
+        updateContactDto[key] === ''
+      ) {
+        updateContactDto[key] = null;
+      }
+    }
     return this.contactsService.update(id, updateContactDto);
   }
 

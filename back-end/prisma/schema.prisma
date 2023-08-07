@@ -17,6 +17,7 @@ model User {
   password   String
   number     String
   img_perfil String?
+  dataRegistro  DateTime   @default(now())
   contact    Contact[]
 
   @@map("users")
@@ -29,6 +30,7 @@ model Contact {
   infos      String?
   number     String
   img_perfil String?
+  dataRegistro  DateTime   @default(now())
   user       User    @relation(fields: [userId], references: [id])
   userId     String
 

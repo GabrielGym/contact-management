@@ -9,14 +9,14 @@ export const CadastroStyles = styled.main`
   border-radius: 8px;
   border: 2px solid var(--color-gray-900);
   padding: 3rem 2rem;
-  margin: 0 auto;
+  margin: 6rem auto;
   gap: 1.5rem;
   font-weight: 500;
   color: var(--color-white);
   max-width: 650px;
 
   > h2 {
-    margin-top: 1rem;
+    margin: 1.5rem 0;
     font-size: 1.2rem;
     color: var(--color-gray-400);
     text-align: center;
