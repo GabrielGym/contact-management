@@ -33,7 +33,8 @@ export const Dashboard = () => {
     const userData = JSON.parse(userDataString!);
 
     const [contacts, setContacts] = useState<ContactsResponse[]>([]);
-    
+    const [formData, setFormData] = useState({ name: '' });
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalEditContactOpen, setIsModalEditContactOpen] = useState(false);
     const [isModalEditUserOpen, setIsModalEditUserOpen] = useState(false);
@@ -74,12 +75,9 @@ export const Dashboard = () => {
     }
 
     useEffect(() => {
-        GetUser();
-
         if (!token) {
             navigate("/")
         }
-
         const AllContacts = async () => {
             try {
                 const response = await api.get<ContactsResponse[]>("/contacts", {
@@ -93,14 +91,17 @@ export const Dashboard = () => {
             }
         };
 
-        AllContacts();
-    }, [navigate, token, userData, contacts]);
+        GetUser();
+        if (formData.name.length <= 0) {
+            AllContacts();
+        }
+    }, [formData.name.length, navigate, token, userData]);
 
     return (
         <Main>
             <Header className='conf-user'>
                 <h1>Contact management</h1>
-                <SearchContacts contacts={contacts} setContacts={setContacts} />
+                <SearchContacts contacts={contacts} setContacts={setContacts} formData={formData} setFormData={setFormData} />
                 <button onClick={OpenModal}>Adicionar contato +</button>
                 <ModalAddContacts CloseModal={CloseModal} isModalOpen={isModalOpen} />
                 <div className='info-user'>
@@ -127,8 +128,10 @@ export const Dashboard = () => {
                         contacts.map((contact) => {
                             return (
                                 <li key={contact.id}>
-                                    <span>{!contact.img_perfil ? <IoMdContact /> : contact.img_perfil}</span>
-                                    <h2>{contact.name}</h2>
+                                    <div>
+                                        <span>{!contact.img_perfil ? <IoMdContact /> : contact.img_perfil}</span>
+                                        <h2>{contact.name}</h2>
+                                    </div>
                                     <div>
                                         <h3>{contact.number}</h3>
                                         <h3>{!contact.email ? "email não adicionado" : contact.email}</h3>

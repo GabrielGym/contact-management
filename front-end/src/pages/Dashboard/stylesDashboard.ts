@@ -69,6 +69,8 @@ export const Section = styled.section`
       display: flex;
       flex-direction: row;
       gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     button {
@@ -85,8 +87,9 @@ export const Section = styled.section`
   @media (min-width: 500px) {
     > ul > li {
       flex-direction: row;
+      align-items: center;
 
-      div {
+      > div {
         flex-direction: column;
       }
     }
@@ -105,6 +108,7 @@ export const Header = styled.header`
   color: white;
   width: 100%;
   gap: 2rem;
+  margin: 0 auto;
 
   h1 {
     font-size: 3rem;
