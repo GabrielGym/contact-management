@@ -66,7 +66,7 @@ export const ModalEditUser = ({ CloseModalEditUser, isModalEditUserOpen }: Conta
                     />
 
                     <label htmlFor="password">Senha</label>
-                    <textarea
+                    <input
                         id="password"
                         name="password"
                         value={formData.password}
