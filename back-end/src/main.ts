@@ -7,11 +7,7 @@ import * as cors from 'cors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(
-    cors({
-      origin: ['https://contact-management-blue.vercel.app', 'http://localhost:5173']
-    }),
-  );
+  app.use(cors());
 
   const config = new DocumentBuilder()
     .setTitle('contact-manangement')
