@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { CadastroStyles } from "./stylesCadastro";
 import { CadastroData } from "./validator";
+import { ToastContainer } from "react-toastify";
 
 export const Cadastro: React.FC = () => {
     const { newRegister, navigate } = useAuth();
@@ -73,6 +74,18 @@ export const Cadastro: React.FC = () => {
                 />
 
                 <button type="submit" onSubmit={() => handleInputChange}>Cadastrar</button>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
             </form>
 
             <h2>Voltar para a área de <span onClick={() => navigate("/")}>Login</span></h2>

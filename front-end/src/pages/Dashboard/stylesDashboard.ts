@@ -11,7 +11,6 @@ export const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
 `;
 
 export const Section = styled.section`
@@ -23,6 +22,7 @@ export const Section = styled.section`
   color: ${darkTheme.color};
   box-shadow: 0px 4px 10px ${darkTheme.shadow};
   border-radius: 8px;
+  box-sizing: border-box;
 
   h1 {
     font-size: 24px;
@@ -109,6 +109,7 @@ export const Header = styled.header`
   width: 100%;
   gap: 2rem;
   margin: 0 auto;
+  box-sizing: border-box;
 
   h1 {
     font-size: 3rem;
@@ -135,7 +136,7 @@ export const Header = styled.header`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-
+    box-sizing: border-box;
     > button {
       font-size: 20px;
       color: var(--color-white);
